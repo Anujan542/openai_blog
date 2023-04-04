@@ -1,12 +1,13 @@
 import { withPageAuthRequired } from "@auth0/nextjs-auth0";
 import { AppLayout } from "../../components/AppLayout";
 import { useState } from "react";
+import { useRouter } from "next/router";
 
 const NewPost = () => {
+  const router = useRouter();
+
   const [topic, setTopic] = useState("");
   const [keywords, setKeywords] = useState("");
-
-  const [postContent, setPostContent] = useState("");
 
   const hanldeSubmit = async (e) => {
     e.preventDefault();
@@ -19,8 +20,9 @@ const NewPost = () => {
     });
 
     const json = await res.json();
-
-    setPostContent(json.post.postContent);
+    if (json?.postId) {
+      router.push(`/post/${json.postId}`);
+    }
   };
 
   return (
@@ -48,16 +50,12 @@ const NewPost = () => {
         </div>
         <button
           type="submit"
-          className="bg-green-500 tracking-wider w-full text-center text-white font-bold cursor-pointer uppercase px-4 py-2 rounded-md hover:bg-green-600 transition-colors block"
+          className="btn"
+          // className="bg-green-500 tracking-wider w-full text-center text-white font-bold cursor-pointer uppercase px-4 py-2 rounded-md hover:bg-green-600 transition-colors block"
         >
           Generate Post
         </button>
       </form>
-
-      <div
-        className="max-w-screen-sm p-10"
-        dangerouslySetInnerHTML={{ __html: postContent }}
-      />
     </div>
   );
 };

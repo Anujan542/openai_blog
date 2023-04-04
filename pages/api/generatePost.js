@@ -52,9 +52,9 @@ export default withApiAuthRequired(async function handler(req, res) {
       },
       {
         role: "user",
-        content: `Write a long and detailed SEO-friendly blog post about ${topic}, that targets the following comma-seperated keywords: ${keywords}.
-       The content should be formatted in SEO-friendly HTML,
-       limited to the following HTML tags: p, h1, h2, h3 ,h4, h5, h6, strong, li, ol, ul i.`,
+        content: `Write a long and detailed SEO-friendly blog post about ${topic}, that targets the following comma-separated keywords: ${keywords}. 
+      The response should be formatted in SEO-friendly HTML, 
+      limited to the following HTML tags: p, h1, h2, h3, h4, h5, h6, strong, i, ul, li, ol.`,
       },
     ],
   });
@@ -68,13 +68,13 @@ export default withApiAuthRequired(async function handler(req, res) {
     messages: [
       {
         role: "system",
-        content: "You are a blog post generator",
+        content: "You are a blog post generator.",
       },
       {
         role: "user",
-        content: `Write a long and detailed SEO-friendly blog post about ${topic}, that targets the following comma-seperated keywords: ${keywords}.
-         The content should be formatted in SEO-friendly HTML,
-         limited to the following HTML tags: p, h1, h2, h3 ,h4, h5, h6, strong, li, ol, ul i.`,
+        content: `Write a long and detailed SEO-friendly blog post about ${topic}, that targets the following comma-separated keywords: ${keywords}. 
+      The response should be formatted in SEO-friendly HTML, 
+      limited to the following HTML tags: p, h1, h2, h3, h4, h5, h6, strong, i, ul, li, ol.`,
       },
       {
         role: "assistant",
@@ -93,13 +93,13 @@ export default withApiAuthRequired(async function handler(req, res) {
     messages: [
       {
         role: "system",
-        content: "You are a blog post generator",
+        content: "You are a blog post generator.",
       },
       {
         role: "user",
-        content: `Write a long and detailed SEO-friendly blog post about ${topic}, that targets the following comma-seperated keywords: ${keywords}.
-         The content should be formatted in SEO-friendly HTML,
-         limited to the following HTML tags: p, h1, h2, h3 ,h4, h5, h6, strong, li, ol, ul i.`,
+        content: `Write a long and detailed SEO-friendly blog post about ${topic}, that targets the following comma-separated keywords: ${keywords}. 
+      The response should be formatted in SEO-friendly HTML, 
+      limited to the following HTML tags: p, h1, h2, h3, h4, h5, h6, strong, i, ul, li, ol.`,
       },
       {
         role: "assistant",
@@ -139,10 +139,11 @@ export default withApiAuthRequired(async function handler(req, res) {
   });
 
   res.status(200).json({
-    post: {
-      postContent,
-      title,
-      metaDescription,
-    },
+    postId: post.insertedId,
+    // post: {
+    //   postContent,
+    //   title,
+    //   metaDescription,
+    // },
   });
 });
